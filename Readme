@@ -1,0 +1,62 @@
+Fraud Risk:
+
+Credit Card Fraud: Analysis and Prevention
+
+Overview:
+Credit card fraud represents a significant threat to the integrity of financial transactions and consumer trust in digital commerce. As the reliance on credit cards for everyday purchases continues to grow, so does the sophistication of fraudsters exploiting vulnerabilities in the system. This project aims to analyze patterns of credit card fraud, understand the factors contributing to fraudulent activities and explore effective methods for detection and prevention.
+
+Dataset Description:
+The dataset comprises 100,000 transactions generated to simulate real-world credit card activity. Each entry includes the following features:
+
+TransactionID: A unique identifier for each transaction, ensuring traceability.
+TransactionDate: The date and time when the transaction occurred, allowing for temporal analysis.
+Amount: The monetary value of the transaction, which can help identify unusually large transactions that may indicate fraud.
+MerchantID: An identifier for the merchant involved in the transaction, useful for assessing merchant-related fraud patterns.
+TransactionType: Indicates whether the transaction was a purchase or a refund, providing context for the activity.
+Location: The geographic location of the transaction, facilitating analysis of fraud trends by region.
+IsFraud: A binary target variable indicating whether the transaction is fraudulent (1) or legitimate (0), essential for supervised learning models.
+Analysis Objectives
+
+Lets try to answer a few questions like,
+
+Where is fraud happening?
+
+Which transaction types are risky?
+
+Is fraud increasing?
+
+
+Cleaning the dataset:
+
+The dataset has 100000 rows and 7 columns.
+
+Luckily there are no missing values.
+
+Total Transactions = COUNT(
+    credit_card_fraud_dataset[TransactionID]
+)
+
+Fraud Rate % = 
+DIVIDE([Fraud Transactions], [Total Transactions])
+
+Fraud Loss Amount = 
+CALCULATE(
+    SUM(credit_card_fraud_dataset[Amount]),
+    credit_card_fraud_dataset[IsFraud] = 1
+)
+
+
+Fraud Transactions by Merchant = 
+CALCULATE(COUNT(credit_card_fraud_dataset[TransactionID]), credit_card_fraud_dataset[IsFraud] = 1)
+
+
+Finally,
+
+Where is fraud happening?
+We can see that New York has the highest fraud rate.
+
+Which transaction types are risky?
+Looks like there is not much difference between refund and purchase but refund looks risky.
+
+Is fraud increasing?
+From 2023 to 2024 fraud isn't stable but either high or low.
